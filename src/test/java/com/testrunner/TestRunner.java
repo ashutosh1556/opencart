@@ -1,30 +1,31 @@
 package com.testrunner;
 
 import org.junit.AfterClass;
-import org.junit.runner.RunWith;
+//import org.junit.runner.RunWith;
 
 import com.cucumber.listener.Reporter;
 
 import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
+import cucumber.api.testng.AbstractTestNGCucumberTests;
+//import cucumber.api.junit.Cucumber;
 
-@RunWith(Cucumber.class)
-@CucumberOptions
-(
-		features = "src/test/resources/Features",
-				 plugin = {"pretty", "html:reports/cucumber-html-report","json:reports/cucumber-html-report/jsonreport",
-		"com.cucumber.listener.ExtentCucumberFormatter:reports/Extentreports/Extentreport.html"},
-		glue = {"com.stepdefinitions"}
-)
-public class TestRunner 
-{
-	 @AfterClass
-     public static void extendReport()
-   {
-       Reporter.loadXMLConfig("src/test/resources/TestData/extent-config.xml");
-       Reporter.setSystemInfo("user", System.getProperty("user.name"));
-       Reporter.setSystemInfo("os", "Windows");
-       Reporter.setTestRunnerOutput("Sample test runner output message");
-   }
+//@RunWith(Cucumber.class)
+@CucumberOptions(features="src\\test\\resources\\Features\\Testcase.feature" ,
+				 glue= {"com.stepdefintion"},
+				 plugin = {"pretty", "html:src/test/resources/reports/cucumber-html-report","json:src/test/resources/reports/cucumber-html-report/jsonreport",
+"com.cucumber.listener.ExtentCucumberFormatter:src/test/resources/reports/Extentreports/Extentreport.html"},
+				tags = {"@tc_01_login", "@tc_02_admin"}
+				)
+
+public class TestRunner extends AbstractTestNGCucumberTests {
+	@AfterClass
+	public static void extendReport()
+    {
+        Reporter.loadXMLConfig("\\src\\test\\resources\\configurationproperties\\extent-config.xml");
+        Reporter.setSystemInfo("user", System.getProperty("user.name"));
+        Reporter.setSystemInfo("os", "Windows");
+      
+    }
+
 
 }

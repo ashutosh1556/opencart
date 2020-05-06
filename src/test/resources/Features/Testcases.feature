@@ -20,11 +20,7 @@ Scenario: To validate login functionatlity
 	Then enter <email>
 	Then enter <password>
 	Then click on login button
-	
-	
-	
-		
-		
+			
 Scenario Outline: To validate Searching  product and reviewing 
 	Given launch browser and enter the url
 	Then enter the product in "<srchbar>"
@@ -35,13 +31,7 @@ Examples:
 |mac	|
 |mac    |	
 
-
 Scenario: To validate the password change functionality
 	Given Launch the Browser and enter the opencart url
 	Then after login navigate to my accounts
 	Then change the password
-	
-
-
-
- 
